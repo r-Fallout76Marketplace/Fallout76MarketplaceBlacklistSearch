@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="{{url_for('static', filename='images/favicon.png')}}"">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <title>r/Fallout76Marketplace Blacklist</title>
+</head>
+<body>
+    <img class="banner-image" src="/static/images/banner.png">
+    <ul class="nav_bar">
+        <li><a href="https://www.reddit.com/message/compose?to=/r/Fallout76Marketplace">Contact Us</a></li>
+        <li><a href="https://www.reddit.com/r/Fallout76Marketplace/wiki/index">Wiki</a></li>
+        <li><a href="https://trello.com/b/8oCsXC2j">Trading Blacklist</a></li>
+        <li><a href="https://www.reddit.com/r/Fallout76Marketplace/">r/Fallout76Marketplace</a></li>
+        <li style="float:left; ">
+            <img class = "logo" src="/static/images/logo.png">
+            <h3 style="display: inline-block;">r/Fallout76Marketplace Trading Blacklist</h3>
+        </li>
+    </ul>
+    <div class="card">
+        <br />
+        <h1>Trading Blacklist</h1>
+        <br />
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque magna arcu, vulputate euismod sodales vitae,
+            cursus non nisi. Sed dignissim pellentesque felis, et mollis neque blandit eleifend. Vivamus rutrum nunc a
+            justo vestibulum aliquam. Phasellus felis leo, tempus nec mollis a, tristique at enim. Nulla cursus augue nec
+            leo pharetra, vel ultricies est suscipit. Vivamus dictum nisi odio, id malesuada sapien elementum vel. Duis
+            imperdiet augue nec arcu consectetur, eget scelerisque massa maximus. Aenean at nisl elementum, sodales nulla
+            ac, convallis mauris.
+        </p>
+        <br />
+        <p>
+            Nulla dictum eros eget egestas pretium. Nunc nec neque at nibh viverra tempus eget vitae mi. In finibus leo et
+            consectetur elementum. Ut augue quam, lacinia eget velit sed, aliquet vestibulum turpis. Duis volutpat
+            consequat lorem ut cursus. Mauris luctus convallis nisi, nec sollicitudin tortor egestas ut. Curabitur
+            sollicitudin augue enim, eu aliquam mi consectetur eu. Nam bibendum mattis nisi vel finibus. Cras et lacus
+            sagittis, rutrum tortor bibendum, eleifend nisl. Nullam a felis posuere risus viverra posuere ut sed sem. Sed
+            hendrerit condimentum enim, nec facilisis enim tempor sed.
+        </p>
+        <br />
+        <p>
+            Phasellus non ligula lobortis, consequat dui eget, tincidunt nulla. Proin posuere pellentesque risus, non
+            laoreet sem gravida vel. Mauris aliquam dapibus sodales. In hendrerit imperdiet tortor. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Nunc tincidunt, nunc id congue hendrerit,
+            quam lectus posuere est, et consectetur libero odio ac nulla. Nam tristique mi eget massa venenatis, ut
+            dapibus nulla condimentum. Morbi scelerisque mollis tortor, vel tristique lacus pulvinar at. Nulla sodales eget
+            purus vel porta. Sed a diam eu nibh hendrerit tincidunt. Vivamus a lacinia lorem, vitae condimentum ligula.
+            Proin suscipit nisl sed porttitor scelerisque. Donec vestibulum turpis sed turpis laoreet, et vestibulum elit
+            semper.
+        </p>
+        <br />
+        <br />
+        <div class="title_bar">
+            <h3 style="color: black;">Search in Blacklist</h3>
+        </div>
+        {% if input_missing %}
+            <style>
+                #redditname, #gamertag {border: 1px solid red;}
+            </style>
+        {% endif %}
+        <form class="search_form" action="/search_result" method="post">
+            <label for="redditname">Reddit username: </label>
+            <input id="redditname" type="text" name="redditname" placeholder="u/username">
+            <br />
+            <br />
+            <div class="separator">OR</div>
+            <br />
+            <label for="gamertag">GamerTag: </label>
+            <input id="gamertag" type="text" name="gamertag" placeholder="Enter the GamerTag">
+            <label for="platform">Platform: </label>
+            <select id="platform" name="platform" style="border: 1px solid #7B7265;">
+                <option value="xbox">XBOX</option>
+                <option value="ps">PlayStation</option>
+                <option value="pc">PC</option>
+            </select>
+            <br>
+            <br>
+            <p style="padding-left: 5px; font-size: 11px;">
+                <a href="" style="color: red;">
+                    For XBOX Gamertags, Enter the XBOX 360 Compatible GT
+                </a>
+            </p>
+            <input id="submit_btn" type="submit" value="Search Blacklist" style="padding: 5px 10px 5px 10px;">
+            {% if search_result is not none %}
+                <h2 style="margin-top: 30px">Search Result</h2>
+                <hr style="border-color: #7B7265; background-color: #7B7265; margin-top: 10px">
+                <br />
+                {% if search_result|length <= 0 %}
+                    <p style="padding-top: 15px;">No search result were found.</p>
+                    <br />
+                {% endif%}
+                {% if msg %}
+                    <p style="color: red;">{{msg}}</p>
+                    <br />
+                {% endif%}
+                {% for item in search_result %}
+                    <blockquote class="trello-card" >
+                        <a href={{item}}>{{item}}</a>
+                    </blockquote>
+                    <br />
+                    <hr style="border-color: #7B7265; background-color: #7B7265; margin-top: 10px">
+                    <br />
+                {% endfor %}
+            {% elif msg %}
+                <h2 style="margin-top: 30px">Error!</h2>
+                <hr style="border-color: #7B7265; background-color: #7B7265; margin-top: 10px">
+                <br />
+                <p style="color: red;">{{msg}}</p>
+            {% endif%}
+        </form>
+    </div>
+    <script src="https://p.trellocdn.com/embed.min.js"></script>
+</body>
+<br>
+<footer>
+  <p><script>document.write(new Date().getFullYear())</script> r/Fallout76Marketplace. Fallout series, Fallout 76, and all the content are property of Betheda/Zenimax Media Inc.</p>
+</footer>
+</html>
