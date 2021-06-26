@@ -18,6 +18,12 @@ limiter = Limiter(
     default_limits=["200 per day", "50 per hour"]
 )
 
+trello_client = TrelloClient(
+    api_key=os.environ['TRELLO_API_KEY'],
+    api_secret=os.environ['TRELLO_API_SECRET'],
+    token=os.environ['TRELLO_TOKEN']
+)
+
 
 @app.route('/')
 def index():
@@ -130,9 +136,4 @@ def rate_limit_handler(err):
 
 
 if __name__ == "__main__":
-    trello_client = TrelloClient(
-        api_key=os.environ['TRELLO_API_KEY'],
-        api_secret=os.environ['TRELLO_API_SECRET'],
-        token=os.environ['TRELLO_TOKEN']
-    )
-    app.run(debug=True)
+    app.run()
