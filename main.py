@@ -18,11 +18,11 @@ limiter = Limiter(
     default_limits=["200 per day", "50 per hour"]
 )
 
-trello_client = TrelloClient(
-    api_key=os.environ['TRELLO_API_KEY'],
-    api_secret=os.environ['TRELLO_API_SECRET'],
-    token=os.environ['TRELLO_TOKEN']
-)
+# trello_client = TrelloClient(
+#     api_key=os.environ['TRELLO_API_KEY'],
+#     api_secret=os.environ['TRELLO_API_SECRET'],
+#     token=os.environ['TRELLO_TOKEN']
+# )
 
 
 @app.route('/')
@@ -96,7 +96,7 @@ def search_blacklist():
                 blacklist_search_result = list(set(blacklist_search_result))
             except KeyError:
                 err_msg = f"The gamertag of the user has been changed. {request.form['gamertag'].strip()} is not " \
-                          f"affiliated with any XBOX account as of now. The card below may or may not have to latest " \
+                          f"affiliated with any XBOX account as of now. The card(s) below may or may not have to latest " \
                           f"gamertag."
             except json.JSONDecodeError:
                 err_msg = "Incorrect XBOX gamertag format was passed. Please use XBOX 360 compatible GT."
@@ -113,7 +113,7 @@ def search_blacklist():
             except requests.exceptions.HTTPError as http_error:
                 if http_error.response.status_code == 404:
                     err_msg = f"The gamertag of the user has been changed. {request.form['gamertag'].strip()} is not " \
-                              f"affiliated with any PSN account as of now. The card below may or may not have to " \
+                              f"affiliated with any PSN account as of now. The card(s) below may or may not have to " \
                               f"latest gamertag."
                 else:
                     err_msg = str(http_error)
