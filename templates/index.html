@@ -23,32 +23,45 @@
         <h1>Trading Blacklist</h1>
         <br />
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque magna arcu, vulputate euismod sodales vitae,
-            cursus non nisi. Sed dignissim pellentesque felis, et mollis neque blandit eleifend. Vivamus rutrum nunc a
-            justo vestibulum aliquam. Phasellus felis leo, tempus nec mollis a, tristique at enim. Nulla cursus augue nec
-            leo pharetra, vel ultricies est suscipit. Vivamus dictum nisi odio, id malesuada sapien elementum vel. Duis
-            imperdiet augue nec arcu consectetur, eget scelerisque massa maximus. Aenean at nisl elementum, sodales nulla
-            ac, convallis mauris.
+            The trading blacklist consists of users who have broken the r/Fallout76Marketplace subreddit rules. Their
+            offenses include but not limited to
         </p>
+        <ul style="margin-left: 30px; padding-top: 10px;">
+            <li>Scamming</li>
+            <li>Faking Identity/Ban Evasion</li>
+            <li>Trade/Karma Manipulation</li>
+            <li>Duping/Exploiting/Illicit Items Trade</li>
+            <li>Outside Exchange/RMT</li>
+            <li>Inappropriate/Threatening Behavior</li>
+        </ul>
         <br />
         <p>
-            Nulla dictum eros eget egestas pretium. Nunc nec neque at nibh viverra tempus eget vitae mi. In finibus leo et
-            consectetur elementum. Ut augue quam, lacinia eget velit sed, aliquet vestibulum turpis. Duis volutpat
-            consequat lorem ut cursus. Mauris luctus convallis nisi, nec sollicitudin tortor egestas ut. Curabitur
-            sollicitudin augue enim, eu aliquam mi consectetur eu. Nam bibendum mattis nisi vel finibus. Cras et lacus
-            sagittis, rutrum tortor bibendum, eleifend nisl. Nullam a felis posuere risus viverra posuere ut sed sem. Sed
-            hendrerit condimentum enim, nec facilisis enim tempor sed.
+            The link for the complete blacklist is in the menu above. We advise checking the blacklist before trading,
+            especially if you are not using a courier and are dropping first. Even then, one should remain cautious.
+            Blacklist does not guarantee that you will not be scammed. Record all your trades. It will help us catch
+            the scammer in case things go south. But most importantly, keep in mind that some offers are too good to be true.
         </p>
         <br />
-        <p>
-            Phasellus non ligula lobortis, consequat dui eget, tincidunt nulla. Proin posuere pellentesque risus, non
-            laoreet sem gravida vel. Mauris aliquam dapibus sodales. In hendrerit imperdiet tortor. Vestibulum ante ipsum
-            primis in faucibus orci luctus et ultrices posuere cubilia curae; Nunc tincidunt, nunc id congue hendrerit,
-            quam lectus posuere est, et consectetur libero odio ac nulla. Nam tristique mi eget massa venenatis, ut
-            dapibus nulla condimentum. Morbi scelerisque mollis tortor, vel tristique lacus pulvinar at. Nulla sodales eget
-            purus vel porta. Sed a diam eu nibh hendrerit tincidunt. Vivamus a lacinia lorem, vitae condimentum ligula.
-            Proin suscipit nisl sed porttitor scelerisque. Donec vestibulum turpis sed turpis laoreet, et vestibulum elit
-            semper.
+        <h3>Instructions</h3>
+        <p style="padding-top: 15px;">
+            To search a user on the blacklist, you either need to provide their reddit username or their gamertag. If
+            you provide both inputs, the search engine is going to prefer the gamertag since it is generally more accurate.
+            For XBOX gamertag, you need to provide the <a style="color: red;" href="https://imgur.com/a/vQSTer4">XBOX 360 compatible gamertag</a>.
+            Generally, the XBOX 360 compatible GT is the one with just alphabets and numbers. For example, the XBOX 360
+            compatible gamertag of <i>VaultTecCo#2648</i> is <i>VaultTecCo2648</i>. Note that not even pound symbol (#) is present in
+            XBOX 360 GT version.
+        </p>
+        <p style="padding-top: 15px;">
+            For Playstation and PC. this is pretty straight forward as they don't multiple naming conventions. If you
+            get any errors, screenshot the website and send it to us using the contact us button in the menu.
+        </p>
+        <p style="padding-top: 15px;">
+            Note: You can only make one request every few minutes. If you get a rate limit error message wait a few
+            minutes before checking another Gamertag/Reddit Username.
+        </p>
+        <p style="padding-top: 15px;">
+            Thanks for trading with us!
+            r/Fallout76Marketplace
         </p>
         <br />
         <br />
@@ -78,8 +91,9 @@
             <br>
             <br>
             <p style="padding-left: 5px; font-size: 11px;">
-                <a href="" style="color: red;">
-                    For XBOX Gamertags, Enter the XBOX 360 Compatible GT
+                <a href="https://imgur.com/a/vQSTer4" style="color: red;">
+                    For XBOX Gamertags, Enter the XBOX 360 Compatible GT. Also, make sure to select the correct
+                    platform before searching.
                 </a>
             </p>
             <input id="submit_btn" type="submit" value="Search Blacklist" style="padding: 5px 10px 5px 10px;">
@@ -106,7 +120,6 @@
             {% elif msg %}
                 <h2 style="margin-top: 30px">Error!</h2>
                 <hr style="border-color: #7B7265; background-color: #7B7265; margin-top: 10px">
-                <br />
                 <p style="color: red;">{{msg}}</p>
             {% endif%}
         </form>
