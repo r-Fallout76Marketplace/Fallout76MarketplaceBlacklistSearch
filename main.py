@@ -30,6 +30,18 @@ def index():
     return render_template('index.html', input_missing=False, search_result=None, msg='')
 
 
+# Get all labels from the trello card
+def get_all_labels(trello_card):
+    # If there are no labels for card
+    if trello_card.labels is None:
+        return "BLACKLISTED"
+    # Otherwise return all label names in string
+    labels = ""
+    for label in trello_card.labels:
+        labels += label.name + ", "
+    return labels[:-2]
+
+
 # Removes the archived cards from list
 def delete_archived_cards_and_check_desc(search_result, search_query):
     for card in search_result:
@@ -129,7 +141,7 @@ def search_blacklist():
         blacklist_search_result = search_in_blacklist(request.form['redditname'].strip())
 
     # We only need the urls for the embedded cards
-    blacklist_search_result = [card.url for card in blacklist_search_result]
+    blacklist_search_result = [(get_all_labels(card), card.url) for card in blacklist_search_result]
     return render_template("index.html", input_missing=False, search_result=blacklist_search_result, msg=err_msg)
 
 

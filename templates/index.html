@@ -24,7 +24,7 @@
             The trading blacklist consists of users who have broken the r/Fallout76Marketplace subreddit rules. Their
             offenses include but not limited to
         </p>
-        <ul style="margin-left: 45px; padding-top: 7px; padding-bottom: 7px;">
+        <ul style="margin-left: 45px; padding-top: 7px; padding-bottom: 7px; line-height: 1.5;">
             <li>Scamming</li>
             <li>Faking Identity/Ban Evasion</li>
             <li>Trade/Karma Manipulation</li>
@@ -98,15 +98,16 @@
                     <p class="error-msg">{{msg}}</p>
                 {% endif%}
                 {% for item in search_result %}
+                    <p style="padding-bottom: 15px;">{{item[0]}}</p>
                     <blockquote class="trello-card">
-                        <a href={{item}}>{{item}}</a>
+                        <a href={{item[1]}}>{{item[1]}}</a>
                     </blockquote>
                     <br />
                     <hr style="border-color: #7B7265; background-color: #7B7265; margin: 20px 80px 20px 0px;">
                 {% endfor %}
             {% elif msg %}
                 <h2 style="margin-top: 80px">Error!</h2>
-                <hr style="border-color: #7B7265; background-color: #7B7265; margin-top: 10px; margin-right: 80px;">
+                <hr style="border-color: #7B7265; background-color: #7B7265; margin: 20px 80px 20px 0px;">
                 <p class="error-msg">{{msg}}</p>
             {% endif%}
         </form>
