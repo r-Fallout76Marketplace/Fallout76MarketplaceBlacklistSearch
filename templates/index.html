@@ -19,14 +19,12 @@
         </li>
     </ul>
     <div class="card">
-        <br />
-        <h1>Trading Blacklist</h1>
-        <br />
-        <p>
+        <h1 class="introduction-paras">Trading Blacklist</h1>
+        <p class="introduction-paras">
             The trading blacklist consists of users who have broken the r/Fallout76Marketplace subreddit rules. Their
             offenses include but not limited to
         </p>
-        <ul style="margin-left: 30px; padding-top: 10px;">
+        <ul style="margin-left: 45px; padding-top: 7px; padding-bottom: 7px;">
             <li>Scamming</li>
             <li>Faking Identity/Ban Evasion</li>
             <li>Trade/Karma Manipulation</li>
@@ -34,38 +32,35 @@
             <li>Outside Exchange/RMT</li>
             <li>Inappropriate/Threatening Behavior</li>
         </ul>
-        <br />
-        <p>
+        <p class="introduction-paras">
             The link for the complete blacklist is in the menu above. We advise checking the blacklist before trading,
             especially if you are not using a courier and are dropping first. Even then, one should remain cautious.
             Blacklist does not guarantee that you will not be scammed. Record all your trades. It will help us catch
             the scammer in case things go south. But most importantly, keep in mind that some offers are too good to be true.
         </p>
-        <br />
-        <h3>Instructions</h3>
-        <p style="padding-top: 15px;">
+        <h3 class="introduction-paras">Instructions</h3>
+        <p class="introduction-paras">
             To search a user on the blacklist, you either need to provide their reddit/discord username or their gamertag.
             If you provide both inputs, the search engine is going to prefer the gamertag since it is generally more accurate.
             The search engine uses the trello api combined with XBOX and PlayStation API (assuming gamertag is provided)
             to determine if the user is present in the blacklist. However, for XBOX, the API is picky about the naming
             convention.
         </p>
-        <p style="padding-top: 15px;">
+        <p class="introduction-paras">
             For XBOX gamertag, you need to provide the <a style="color: red;" href="https://imgur.com/a/vQSTer4">XBOX 360 compatible gamertag</a>.
             Generally, the XBOX 360 compatible GT is the one with just alphabets and numbers. For example, the XBOX 360
             compatible gamertag of <i>VaultTecCo#2648</i> is <i>VaultTecCo2648</i>. Note that not even pound symbol (#) is present in
             XBOX 360 GT version. Searching GT for Playstation and PC is pretty straight forward as they don't multiple naming conventions.
         </p>
-        <p style="padding-top: 15px;">
+        <p class="introduction-paras">
             Note: You can only make one request every few minutes. If you get a rate limit error message wait a few
             minutes before checking another Gamertag/Reddit Username. If you get any unexpected errors, screenshot the
             website and send it to us using the contact us button in the menu.
         </p>
-        <p style="padding-top: 15px;">
+        <p class="introduction-paras">
             Thanks for trading with us! <br />
             r/Fallout76Marketplace
         </p>
-        <br />
         <div class="title_bar">
             <h4 style="color: black;">Search in Blacklist</h4>
         </div>
@@ -77,10 +72,7 @@
         <form class="search_form" action="/search_result" method="post">
             <label for="redditname">Reddit/Discord username: </label>
             <input id="redditname" type="text" name="redditname" placeholder="u/username">
-            <br />
-            <br />
             <div class="separator">OR</div>
-            <br />
             <label for="gamertag">GamerTag: </label>
             <input id="gamertag" type="text" name="gamertag" placeholder="Enter the GamerTag">
             <label for="platform">Platform: </label>
@@ -89,44 +81,38 @@
                 <option value="ps">PlayStation</option>
                 <option value="pc">PC</option>
             </select>
-            <br>
-            <br>
-            <p style="padding-left: 10px; margin-top: 10px; font-size: 11px;">
+            <p style="padding-left: 20px; margin-top: 10px; margin-bottom: 10px; font-size: 11px;">
                 <a href="https://imgur.com/a/vQSTer4" style="color: red;">
                     For XBOX Gamertag, Enter the XBOX 360 Compatible GT.
                 </a>&nbsp; Also, make sure to select the correct platform before searching.
             </p>
             <input id="submit_btn" type="submit" value="Search Blacklist">
             {% if search_result is not none %}
-                <h2 style="margin-top: 30px">Search Result</h2>
-                <hr style="border-color: #7B7265; background-color: #7B7265; margin-top: 10px">
-                <br />
+	            <h2 style="margin-top: 80px;">Search Result</h2>
+                <hr style="border-color: #7B7265; background-color: #7B7265; margin: 20px 80px 20px 0px;">
                 {% if search_result|length <= 0 %}
-                    <p style="padding-top: 15px;">No search result were found.</p>
-                    <br />
+                    <p class="error-msg">Could not find the user in blacklist. If you are doing a high/medium value
+                        trade, consider using a verified courier.</p>
                 {% endif%}
                 {% if msg %}
-                    <p style="color: red;">{{msg}}</p>
-                    <br />
+                    <p class="error-msg">{{msg}}</p>
                 {% endif%}
                 {% for item in search_result %}
-                    <blockquote class="trello-card" >
+                    <blockquote class="trello-card">
                         <a href={{item}}>{{item}}</a>
                     </blockquote>
                     <br />
-                    <hr style="border-color: #7B7265; background-color: #7B7265; margin-top: 10px">
-                    <br />
+                    <hr style="border-color: #7B7265; background-color: #7B7265; margin: 20px 80px 20px 0px;">
                 {% endfor %}
             {% elif msg %}
-                <h2 style="margin-top: 30px">Error!</h2>
-                <hr style="border-color: #7B7265; background-color: #7B7265; margin-top: 10px">
-                <p style="color: red;">{{msg}}</p>
+                <h2 style="margin-top: 80px">Error!</h2>
+                <hr style="border-color: #7B7265; background-color: #7B7265; margin-top: 10px; margin-right: 80px;">
+                <p class="error-msg">{{msg}}</p>
             {% endif%}
         </form>
     </div>
     <script src="https://p.trellocdn.com/embed.min.js"></script>
 </body>
-<br>
 <footer>
   <p><script>document.write(new Date().getFullYear())</script> r/Fallout76Marketplace. Fallout series, Fallout 76, and all the content are property of Betheda/Zenimax Media Inc.</p>
 </footer>

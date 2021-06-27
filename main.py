@@ -135,7 +135,7 @@ def search_blacklist():
 
 @app.errorhandler(429)
 def rate_limit_handler(err):
-    err_msg = '429 Too Many Requests. Rate Limit Exceeded, try again after couple of minutes'
+    err_msg = '429 Too Many Requests. Rate Limit Exceeded, try again after couple of minutes.'
     return render_template('index.html', input_missing=False, search_result=None, msg=err_msg)
 
 
