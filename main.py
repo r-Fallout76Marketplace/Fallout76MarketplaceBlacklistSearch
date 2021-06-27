@@ -99,7 +99,9 @@ def search_blacklist():
                           f"affiliated with any XBOX account as of now. The card(s) below may or may not have to latest " \
                           f"gamertag."
             except json.JSONDecodeError:
-                err_msg = "Incorrect XBOX gamertag format was passed. Please use XBOX 360 compatible GT."
+                err_msg = "Non XBOX 360 compliant GT was provided. The search result was performed without the aid " \
+                          "of XBOX API. The results may be outdated as offenders tend to change their gamertag after " \
+                          "a while."
             except Exception:
                 err_msg = traceback.format_exc()
         # If psn is selected as platform
@@ -109,7 +111,9 @@ def search_blacklist():
                 blacklist_search_result += search_in_blacklist(account_id)
                 blacklist_search_result = list(set(blacklist_search_result))
             except psnawp_exceptions.PSNAWPIllegalArgumentError:
-                err_msg = "Incorrect PSN gamertag format was passed."
+                err_msg = "Incorrect PSN gamertag format was passed. The search result was performed without the aid " \
+                          "of PSN API. The results may be outdated as offenders tend to change their gamertag after " \
+                          "a while."
             except requests.exceptions.HTTPError as http_error:
                 if http_error.response.status_code == 404:
                     err_msg = f"The gamertag of the user has been changed. {request.form['gamertag'].strip()} is not " \

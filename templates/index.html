@@ -44,20 +44,22 @@
         <br />
         <h3>Instructions</h3>
         <p style="padding-top: 15px;">
-            To search a user on the blacklist, you either need to provide their reddit username or their gamertag. If
-            you provide both inputs, the search engine is going to prefer the gamertag since it is generally more accurate.
+            To search a user on the blacklist, you either need to provide their reddit/discord username or their gamertag.
+            If you provide both inputs, the search engine is going to prefer the gamertag since it is generally more accurate.
+            The search engine uses the trello api combined with XBOX and PlayStation API (assuming gamertag is provided)
+            to determine if the user is present in the blacklist. However, for XBOX, the API is picky about the naming
+            convention.
+        </p>
+        <p style="padding-top: 15px;">
             For XBOX gamertag, you need to provide the <a style="color: red;" href="https://imgur.com/a/vQSTer4">XBOX 360 compatible gamertag</a>.
             Generally, the XBOX 360 compatible GT is the one with just alphabets and numbers. For example, the XBOX 360
             compatible gamertag of <i>VaultTecCo#2648</i> is <i>VaultTecCo2648</i>. Note that not even pound symbol (#) is present in
-            XBOX 360 GT version.
-        </p>
-        <p style="padding-top: 15px;">
-            For Playstation and PC. this is pretty straight forward as they don't multiple naming conventions. If you
-            get any errors, screenshot the website and send it to us using the contact us button in the menu.
+            XBOX 360 GT version. Searching GT for Playstation and PC is pretty straight forward as they don't multiple naming conventions.
         </p>
         <p style="padding-top: 15px;">
             Note: You can only make one request every few minutes. If you get a rate limit error message wait a few
-            minutes before checking another Gamertag/Reddit Username.
+            minutes before checking another Gamertag/Reddit Username. If you get any unexpected errors, screenshot the
+            website and send it to us using the contact us button in the menu.
         </p>
         <p style="padding-top: 15px;">
             Thanks for trading with us!
@@ -74,7 +76,7 @@
             </style>
         {% endif %}
         <form class="search_form" action="/search_result" method="post">
-            <label for="redditname">Reddit username: </label>
+            <label for="redditname">Reddit/Discord username: </label>
             <input id="redditname" type="text" name="redditname" placeholder="u/username">
             <br />
             <br />
