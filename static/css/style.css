@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     color: white;
-    font-family: Calibri, serif;
+    font-family: Arial, Verdana;
 }
 
 body {
@@ -10,7 +10,6 @@ body {
 }
 
 .nav_bar {
-    border-radius: 5px;
     list-style-type: none;
     background-color: #424242;
     overflow: auto;
@@ -61,16 +60,17 @@ body {
 }
 
 .title_bar {
+    border-radius: 5px;
     background-color: #FFA000;
-    padding: 16px 16px;
+    padding: 15px 15px;
     font-size: 20px;
     font-weight: bold;
 }
 
 .search_form {
-    padding: 30px 30px 30px 30px;
+    margin: 25px 10px 25px 10px;
     display: inline-block;
-    width: 95%;
+    width: 100%;
 }
 
 #submit_btn {
@@ -82,8 +82,9 @@ body {
     border-color: #181A1B;
     border-style: solid;
     border-width: 1px;
-    font-size: 18px;
+    font-size: 16px;
     margin-top: 15px;
+    padding: 10px 10px 10px 10px;
 }
 
 #submit_btn:hover {
@@ -92,7 +93,7 @@ body {
 }
 
 .search_form > input, label, select {
-    padding: 5px 5px 5px 5px;
+    padding: 10px 10px 10px 10px;
     margin-right: 15px;
     background-color: #181A1B;
     border-radius: 5px;
@@ -110,6 +111,7 @@ body {
     display: flex;
     align-items: center;
     text-align: center;
+    margin-right: 25px;
 }
 
 .separator::before,
