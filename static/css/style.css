@@ -82,7 +82,8 @@ body {
     border-color: #181A1B;
     border-style: solid;
     border-width: 1px;
-    font-size: 18px
+    font-size: 18px;
+    margin-top: 15px;
 }
 
 #submit_btn:hover {
