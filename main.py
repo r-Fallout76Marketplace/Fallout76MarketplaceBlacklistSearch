@@ -5,18 +5,11 @@ import traceback
 
 import requests
 from flask import Flask, render_template, request
-from flask_limiter import Limiter
-from flask_limiter.util import get_remote_address
-from psnawp_api import psnawp
-from psnawp_api import psnawp_exceptions
+from psnawp_api import PSNAWP
+from psnawp_api.core.psnawp_exceptions import PSNAWPNotFound, PSNAWPAuthenticationError
 from trello import TrelloClient
 
 app = Flask(__name__)
-limiter = Limiter(
-    app,
-    key_func=get_remote_address,
-    default_limits=["200 per day", "50 per hour"]
-)
 
 trello_client = TrelloClient(
     api_key=os.environ['TRELLO_API_KEY'],
@@ -82,19 +75,25 @@ def get_xbox_info(gamertag):
     return json_response['profileUsers'][0]['id']
 
 
-def get_psn_info(chat_message_body):
-    api = psnawp.PSNAWP(os.environ['NPSSO_COOKIE'])
-    user = api.user(online_id=chat_message_body)
+def get_psn_info(gamertag):
+    """
+    Gets the account id from gamertag
+
+    :param gamertag: Gamertag of a user
+    :return: account id
+
+    :raises: PSNAWPNotFound: If the gamertag is not found.
+    """
+    api = PSNAWP(os.environ['NPSSO_COOKIE'])
+    user = api.user(online_id=gamertag)
     return user.account_id
 
 
 @app.route('/search_result', methods=['GET', 'POST'])
-@limiter.limit("1/minute")
 def search_blacklist():
     # If user hasn't entered anything in the form
     if not request.form['redditname'].strip() and not request.form['gamertag'].strip():
-        return render_template("index.html", input_missing=True, search_result=None, msg='Enter reddit username or '
-                                                                                         'gamertag')
+        return render_template("index.html", input_missing=True, search_result=None, msg='Enter reddit username or gamertag')
     err_msg = ''
     # If user gave gamertag
     if request.form['gamertag'].strip():
@@ -122,18 +121,12 @@ def search_blacklist():
                 account_id = get_psn_info(request.form['gamertag'].strip())
                 blacklist_search_result += search_in_blacklist(account_id)
                 blacklist_search_result = list(set(blacklist_search_result))
-            except psnawp_exceptions.PSNAWPIllegalArgumentError:
-                err_msg = "Incorrect PSN gamertag format was passed. The search result was performed without the aid " \
-                          "of PSN API. The results may be outdated as offenders tend to change their gamertag after " \
-                          "a while."
-            except requests.exceptions.HTTPError as http_error:
-                if http_error.response.status_code == 404:
-                    err_msg = f"The gamertag of the user has been changed. {request.form['gamertag'].strip()} is not " \
-                              f"affiliated with any PSN account as of now. The card(s) below may or may not have to " \
-                              f"latest gamertag."
-                else:
-                    err_msg = str(http_error)
-
+            except PSNAWPAuthenticationError:
+                err_msg = "NPSSO Code Expired. Please contact moderators."
+            except PSNAWPNotFound:
+                err_msg = f"The gamertag of the user has been changed. {request.form['gamertag'].strip()} is not " \
+                          f"affiliated with any PSN account as of now. The card(s) below may or may not have to " \
+                          f"latest gamertag."
             except Exception:
                 err_msg = traceback.format_exc()
     else:
@@ -143,12 +136,6 @@ def search_blacklist():
     # We only need the urls for the embedded cards
     blacklist_search_result = [(get_all_labels(card), card.url) for card in blacklist_search_result]
     return render_template("index.html", input_missing=False, search_result=blacklist_search_result, msg=err_msg)
-
-
-@app.errorhandler(429)
-def rate_limit_handler(err):
-    err_msg = '429 Too Many Requests. Rate Limit Exceeded, try again after couple of minutes.'
-    return render_template('index.html', input_missing=False, search_result=None, msg=err_msg)
 
 
 if __name__ == "__main__":
