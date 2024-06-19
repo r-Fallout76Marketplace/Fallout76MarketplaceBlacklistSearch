@@ -2,7 +2,6 @@ import json
 import os
 import re
 import traceback
-from typing import TYPE_CHECKING
 
 import requests
 from dotenv import load_dotenv
@@ -10,9 +9,7 @@ from flask import Flask, render_template, request
 from psnawp_api import PSNAWP
 from psnawp_api.core import PSNAWPAuthenticationError, PSNAWPNotFound
 from trello import TrelloClient
-
-if TYPE_CHECKING:
-    from trello.card import Card
+from trello.card import Card
 
 app = Flask(__name__)
 
