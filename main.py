@@ -65,7 +65,13 @@ def search_in_blacklist(search_query: str):
     search_result = list()
     # escapes the special characters so the search result is exact not from wildcard (e.g '-')
     search_result = trello_client.search(
-        query=re.escape(search_query), cards_limit=10, models=["cards"]
+        query=re.escape(search_query),
+        cards_limit=10,
+        models=["cards"],
+        board_ids=[
+            "5f641b1ee18119838656aa29",
+            "5c2ed0a0d985e5429ff80617",
+        ],
     )
     search_result_escaped_underscore = list()
     # If underscore is in search query, we need to search it escaped and non escaped
