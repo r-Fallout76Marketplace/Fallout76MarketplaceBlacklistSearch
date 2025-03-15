@@ -16,7 +16,10 @@ app = Flask(__name__)
 
 load_dotenv()
 trello_client = TrelloClient(
-    api_key=os.environ["TRELLO_API_KEY"], token=os.environ["TRELLO_TOKEN"]
+    api_key=os.environ["TRELLO_API_KEY"],
+    api_secret=os.environ["TRELLO_API_SECRET"],
+    token=os.environ["TRELLO_TOKEN"],
+    token_secret=os.environ["TRELLO_TOKEN_SECRET"],
 )
 
 

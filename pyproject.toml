@@ -1,0 +1,13 @@
+[project]
+name = "fallout76marketplaceblacklistsearch"
+version = "0.1.0"
+description = "Flask website to search blacklisted user for r/Fallout76Marketplace."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "flask>=3.1.0",
+    "gunicorn>=23.0.0",
+    "psnawp>=2.1.0",
+    "py-trello>=0.20.1",
+    "python-dotenv>=1.0.1",
+]
